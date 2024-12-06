@@ -59,9 +59,9 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="mb-3 text-start">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
-                    required autofocus>
+                <label for="hei_username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="hei_username" name="hei_username"
+                    placeholder="Enter your username" required autofocus>
             </div>
             <div class="mb-3 text-start">
                 <label for="password" class="form-label">Password</label>
@@ -74,6 +74,13 @@
             </div>
             <button type="submit" class="btn btn-dark w-100">LOG IN</button>
         </form>
+
+        @if ($errors->has('credentials'))
+            <div class="alert alert-danger">
+                {{ $errors->first('credentials') }}
+            </div>
+        @endif
+
 
 
         <div class="powered-by mt-4">

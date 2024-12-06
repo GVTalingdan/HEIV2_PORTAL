@@ -34,30 +34,34 @@ return [
     | Supported: "session"
     |
     */
-
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'users', // This should point to the provider
+        ],
+
+        'hei' => [  // Custom guard for 'hei'
+            'driver' => 'session',
+            'provider' => 'heis_accts', // Points to the 'heis_accts' provider
         ],
     ],
 
     /*
-    |--------------------------------------------------------------------------
-    | User Providers
-    |--------------------------------------------------------------------------
-    |
-    | All authentication drivers have a user provider. This defines how the
-    | users are actually retrieved out of your database or other storage
-    | mechanisms used by this application to persist your user's data.
-    |
-    | If you have multiple user tables or models you may configure multiple
-    | sources which represent each model / table. These sources may then
-    | be assigned to any extra authentication guards you have defined.
-    |
-    | Supported: "database", "eloquent"
-    |
-    */
+|--------------------------------------------------------------------------
+| User Providers
+|--------------------------------------------------------------------------
+|
+| All authentication drivers have a user provider. This defines how the
+| users are actually retrieved from your database or other storage
+| mechanisms used by this application to persist your user's data.
+|
+| If you have multiple user tables or models you may configure multiple
+| sources which represent each model / table. These sources may then
+| be assigned to any extra authentication guards you have defined.
+|
+| Supported: "database", "eloquent"
+|
+*/
 
     'providers' => [
         'users' => [
@@ -65,14 +69,13 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'heis_accts' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\HeisAcct::class, // Ensure this points to the correct model
+        ],
     ],
 
-    /*
-    |--------------------------------------------------------------------------
+    /* |--------------------------------------------------------------------------
     | Resetting Passwords
     |--------------------------------------------------------------------------
     |
